@@ -49,5 +49,6 @@ class LoginSerializer(serializers.ModelSerializer):
             'pk': user.pk,
             'email': user.email,
             'access_token': tokens['access'],
-            'refresh_token': tokens['refresh']
+            'refresh_token': tokens['refresh'],
+            'is_company': user.is_company
         }
