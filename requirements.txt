@@ -1,0 +1,6 @@
+Django>=2.1
+djangorestframework~=3.12.1
+djangorestframework_simplejwt
+psycopg2-binary
+django-cors-headers
+psycopg2
