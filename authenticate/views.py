@@ -58,3 +58,16 @@ class LoginView(GenericAPIView):
         except Exception as e:
             print(e)
             return Response('Invalid credentials', status=HTTP_406_NOT_ACCEPTABLE)
+
+class LogoutView(GenericAPIView):
+    authentication_classes = [JWTAuthentication]
+
+    def post(self, request):
+        try:
+            refresh_token = request.data["refresh_token"]
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response(status=HTTP_205_RESET_CONTENT)
+        except Exception as e:
+            print(e)
+            return Response(status=HTTP_400_BAD_REQUEST)
