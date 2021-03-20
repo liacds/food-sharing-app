@@ -11,7 +11,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     is_company = serializers.BooleanField()
     class Meta:
         model = User
-        fields = ['email', 'is_company', 'password', 'full_name']
+        fields = ['email', 'is_company', 'password', 'full_name', 'company_location']
 
     def validate(self, attrs):
         return attrs
@@ -21,19 +21,21 @@ class RegisterSerializer(serializers.ModelSerializer):
 
 
 class LoginSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(max_length=68,
+    password = serializers.CharField(max_length=255,
                                      min_length=8, write_only=True)
     email = serializers.EmailField(max_length=255, min_length=5)
 
-    refresh_token = serializers.CharField(max_length=68,
+    refresh_token = serializers.CharField(max_length=255,
                                           min_length=6, read_only=True)
-    access_token = serializers.CharField(max_length=68,
+    access_token = serializers.CharField(max_length=255,
                                          min_length=6, read_only=True)
+    full_name = serializers.CharField(max_length=255,
+                                          min_length=6, read_only=True)
 
     class Meta:
         model = User
         fields = ['pk', 'email', 'password',
-                  'refresh_token', 'access_token', 'is_company']
+                  'refresh_token', 'access_token', 'is_company', 'full_name']
 
     def validate(self, attrs):
         email = attrs.get('email', '')
@@ -50,5 +52,6 @@ class LoginSerializer(serializers.ModelSerializer):
             'email': user.email,
             'access_token': tokens['access'],
             'refresh_token': tokens['refresh'],
-            'is_company': user.is_company
+            'is_company': user.is_company,
+            'full_name': user.full_name
         }

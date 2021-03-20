@@ -17,6 +17,8 @@ class Food_Pack(models.Model):
     is_kosher = models.BooleanField(default=False)
     is_vegan = models.BooleanField(default=False)
     is_completed = models.BooleanField(default=False)
+    available_for_pickup = models.BooleanField(default=False)
+    stock = models.IntegerField(default=1)
 
 
 
