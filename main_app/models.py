@@ -16,7 +16,7 @@ class Food_Pack(models.Model):
     is_halal = models.BooleanField(default=False)
     is_kosher = models.BooleanField(default=False)
     is_vegan = models.BooleanField(default=False)
-
+    is_completed = models.BooleanField(default=False)
 
 
 

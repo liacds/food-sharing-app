@@ -7,3 +7,7 @@ class Food_Pack_Serializer(serializers.ModelSerializer):
         model = Food_Pack
         fields = ['pk', 'user', 'title', 'description', 'categories', 'timestamp', 'is_halal', 'is_kosher', 'is_vegan']
 
+class Shorter_Food_Pack_Serializer(serializers.ModelSerializer):
+    class Meta:
+        model = Food_Pack
+        fields = ['pk', 'user', 'title', 'description', 'timestamp']
